@@ -1,0 +1,31 @@
+#!/bin/bash
+# vi: set sw=4 ts=4 ai:
+#
+# Author : Ton Kersten
+# Date   : 2023-10-12
+
+# Run an Ansible playbook in the execution environment
+# You need to install `ansible-navigator` for this.
+#
+# To share the local Vault Password file, the home
+# directory is mounted on `/data` in the container.
+
+# Define the Ansible configuration file
+export ANSIBLE_CONFIG="ping/ansible.cfg"
+
+# Navigator mode. stdout or interactive
+MODE="interactive"
+MODE="stdout"
+
+ansible-navigator											\
+	run ping/ping.yml										\
+		--mode ${MODE}										\
+		--eei git.ansilab.nl/tonk/ee_rocky:1.3				\
+		--pull-policy missing								\
+		--eev ${HOME}:/data									\
+		--vault-password-file /data/.VaultPassword			\
+		--inventory ping_inventory							\
+		--extra-vars "firstname=Ton"						\
+		--extra-vars "lastname=Kersten"						\
+		--extra-vars "skills='Type AWX'\n'Play Ansible'"	\
+		--extra-vars "holiday=Belgium"

@@ -1,0 +1,37 @@
+#!/bin/bash
+# vi: set sw=4 ts=4 ai:
+#
+# Author : Ton Kersten
+# Date   : 2023-10-12
+
+# Use `curl` to run a template on the AAP server.
+#
+# In the template, tick the "Enable Webhook", select "Github" as the service
+# box, and copy the URL in this script.
+# After saving, the "Webhook Key" is generated and that needs to be copied here.
+
+secret="<your secret key>"
+payload="$(jo -p							\
+	host_config_key=$(uuid)					\
+	firstname=Ton							\
+	lastname=Kersten						\
+	holiday='Reykjavík'						\
+	skills[]='Call AAP API'					\
+	skills[]='Type YAML'					\
+	skills[]='Run Ansible'					\
+)"
+
+digest1="$(printf "%s" "${payload}"			| \
+	openssl dgst -sha1 -hmac "${secret}"	| \
+	awk 'NF > 1 { print $2 }')"
+sig1="X-Hub-Signature: sha1=${digest1}"
+
+curl										\
+	-H 'content-type: application/json'		\
+	-H "${sig1}"							\
+	-H "X-GitHub-Event: push"				\
+	-H "X-GitHub-Event-Type: push"			\
+	-H "X-GitHub-Delivery: $(uuid)"			\
+	--data "${payload}"						\
+	https://aap.ansilab.nl/api/v2/job_templates/13/github/
+
