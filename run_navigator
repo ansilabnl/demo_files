@@ -2,7 +2,7 @@
 # vi: set sw=4 ts=4 ai:
 #
 # Author : Ton Kersten
-# Date   : 2023-10-12
+# Date   : 2024-01-02
 
 # Run an Ansible playbook in the execution environment
 # You need to install `ansible-navigator` for this.
@@ -20,7 +20,7 @@ MODE="stdout"
 ansible-navigator									\
 	run ping/ping.yml								\
 		--mode ${MODE}								\
-		--eei git.ansilab.nl/tonk/ee_rocky:1.5		\
+		--eei git.ansilab.nl/tonk/ee_rocky:1.6		\
 		--pull-policy missing						\
 		--eev ${HOME}:/data							\
 		--vault-password-file /data/.VaultPassword	\

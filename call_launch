@@ -2,7 +2,7 @@
 # vi: set sw=4 ts=4 ai:
 #
 # Author : Ton Kersten
-# Date   : 2023-10-12
+# Date   : 2024-01-02
 
 # Use `curl` to run a template on the AAP server.
 # This template runs as if the "launch" key is pressed.
@@ -17,7 +17,7 @@
 # This is shown in the API in the "named_url" field.
 
 AAP_HOST="https://aap.ansilab.nl"
-TOKEN="<your secret token>"
+TOKEN="3UEvbzYAAjNbyy5y6uCSpskF0aglrl"
 URL="${AAP_HOST}/api/v2/job_templates/TMPL%20%7C%20Ping%20all%20hosts++Ansible%20Lab/launch/"
 URL="${AAP_HOST}/api/v2/job_templates/11/launch/"
 

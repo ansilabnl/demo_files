@@ -1,6 +1,12 @@
 ---
 #
-# Run: ansible-builder build --tag git.ansilab.nl/tonk/ee_rocky:1.3
+# Run:
+#   ansible-builder build --tag git.ansilab.nl/tonk/ee_rocky:1.6
+#   podman login git.ansilab.nl
+#   podman push git.ansilab.nl/tonk/ee_rocky:1.6
+#
+# To test and check:
+#   podman run -u root  -it --rm git.ansilab.nl/tonk/ee_rocky:1.6
 #
 # See: https://ansible.readthedocs.io/projects/builder/en/latest/definition/
 # See: https://github.com/RHA-Automation/notes/blob/main/2023-06-28-building-complex-execution-environments.md
@@ -25,7 +31,7 @@ images:
 
 dependencies:
   ansible_core:
-    package_pip: ansible-core==2.15.5
+    package_pip: ansible-core==2.15.8
 
   ansible_runner:
     package_pip: ansible-runner
@@ -75,23 +81,16 @@ additional_build_files:
   - src: files/ansible.cfg
     dest: configs
 
-#
-# Extra steps during build
-#
 additional_build_steps:
-  #
-  # Commands to insert after building of the base image
-  #
   append_base:
-    - RUN $PYCMD -m pip install --upgrade pip
+    - RUN $PYCMD -m pip install -U pip
 
-  #
-  # Commands to insert after building of the final image
-  #
   append_final:
-    - COPY _build/configs/ansible.cfg        /etc/ansible/ansible.cfg
-
-    # Receptor for the mesh network
+    - RUN mkdir -p /etc/ansible
+    - COPY _build/configs/ansible.cfg /runner/.ansible.cfg
+    - COPY _build/configs/ansible.cfg /etc/ansible/ansible.cfg
     - COPY --from=quay.io/ansible/receptor:devel /usr/bin/receptor /usr/bin/receptor
+    - RUN update-ca-trust
     - RUN mkdir -p /var/run/receptor
-
+    - RUN echo This is a post-install command!
+    - RUN cat /etc/redhat-release

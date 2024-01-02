@@ -2,7 +2,7 @@
 # vi: set sw=4 ts=4 ai:
 #
 # Author : Ton Kersten
-# Date   : 2023-10-12
+# Date   : 2024-01-02
 
 # Use `curl` to run a template on the AAP server.
 #
@@ -12,7 +12,7 @@
 # After saving, the "Webhook Key" is generated and
 # that needs to be copied here.
 
-export secret="<your secret key>"
+export secret="yglcnVcqjAnKqBuxYUEtfvEAU6ZAq6dSAldYolCLVfhaOO39AV"
 export payload="$(jo me=here)"
 
 digest1="$(printf "%s" "${payload}"			| \

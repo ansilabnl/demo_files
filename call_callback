@@ -2,7 +2,7 @@
 # vi: set sw=4 ts=4 ai:
 #
 # Author : Ton Kersten
-# Date   : 2023-10-12
+# Date   : 2024-01-02
 
 # Use `curl` to run a template on the AAP server.
 # This template is run with a limit on the initiating host.
@@ -12,7 +12,7 @@
 # "Host Config Key" field.
 
 AAP_HOST="https://aap.ansilab.nl"
-KEY="<your secret key>"
+KEY="q0jUeNCqP2PPZh8jIGdSCHYHCUgZuA"
 URL="${AAP_HOST}/api/v2/job_templates/11/callback/"
 
 curl -k -f -i										\

@@ -2,7 +2,7 @@
 # vi: set sw=4 ts=4 ai:
 #
 # Author : Ton Kersten
-# Date   : 2023-10-12
+# Date   : 2024-01-02
 
 # Use `curl` to run a template on the AAP server.
 #
@@ -10,7 +10,7 @@
 # box, and copy the URL in this script.
 # After saving, the "Webhook Key" is generated and that needs to be copied here.
 
-secret="<your secret key>"
+secret="BQWQybaLLkCST11vQXq4eAhRLdBBsGCQx2fL4KBEiO6zhi4XqA"
 payload="$(jo -p							\
 	host_config_key=$(uuid)					\
 	firstname=Ton							\
