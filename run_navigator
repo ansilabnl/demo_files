@@ -20,7 +20,7 @@ MODE="stdout"
 ansible-navigator									\
 	run ping/ping.yml								\
 		--mode ${MODE}								\
-		--eei git.ansilab.nl/tonk/ee_rocky:1.3		\
+		--eei git.ansilab.nl/tonk/ee_rocky:1.5		\
 		--pull-policy missing						\
 		--eev ${HOME}:/data							\
 		--vault-password-file /data/.VaultPassword	\
