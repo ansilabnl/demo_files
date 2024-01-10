@@ -14,8 +14,8 @@
 export ANSIBLE_CONFIG="ping/ansible.cfg"
 
 # Navigator mode. stdout or interactive
-MODE="interactive"
 MODE="stdout"
+MODE="interactive"
 
 ansible-navigator									\
 	run ping/ping.yml								\

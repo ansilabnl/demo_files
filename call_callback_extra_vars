@@ -19,7 +19,7 @@ payload="$(jo -p							\
 		firstname=Ton						\
 		lastname=Kersten					\
 		holiday='Reykjavík'					\
-		skills='Call AAPI\nRun Anisble'		\
+		skills='Call AAAPI\nRun Ansible'	\
 	)"										\
 )"
 
