@@ -1,12 +1,12 @@
 ---
 #
 # Run:
-#   ansible-builder build --tag git.ansilab.nl/tonk/ee_rocky:1.6
+#   ansible-builder build --tag git.ansilab.nl/tonk/ee_rocky:1.7
 #   podman login git.ansilab.nl
-#   podman push git.ansilab.nl/tonk/ee_rocky:1.6
+#   podman push git.ansilab.nl/tonk/ee_rocky:1.7
 #
 # To test and check:
-#   podman run -u root  -it --rm git.ansilab.nl/tonk/ee_rocky:1.6
+#   podman run -u root  -it --rm git.ansilab.nl/tonk/ee_rocky:1.7
 #
 # See: https://ansible.readthedocs.io/projects/builder/en/latest/definition/
 # See: https://github.com/RHA-Automation/notes/blob/main/2023-06-28-building-complex-execution-environments.md
@@ -83,6 +83,7 @@ additional_build_files:
 
 additional_build_steps:
   append_base:
+    - RUN /usr/bin/dnf -y upgrade
     - RUN $PYCMD -m pip install -U pip
 
   append_final:
