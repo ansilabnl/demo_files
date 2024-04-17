@@ -1,0 +1,3 @@
+[submodule "ping"]
+	path = ping
+	url = ssh://gitea@bucket.smartowl.nl:2990/AAP/ping.git
